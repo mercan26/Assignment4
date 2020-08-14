@@ -48,7 +48,7 @@ var tracker = function(exercise, weight, distance, time) {
 	//catch any error thrown in object creation and re-throw it to
 	//calling module.
     } catch (err){
-	console.log("Error recieved during object creation");
+	console.err("Error recieved during service creation");
 	throw err;
     }
 };

@@ -35,6 +35,7 @@ var Exercise = function(type){
 	this.type=type;
 	this.calculation = new swimming();
     }else {
+	console.err("Error Exercise Constructor");
 	throw ({message: "Unknown Exercise. Cannot Create"});
     }
 }
