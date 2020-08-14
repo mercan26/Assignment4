@@ -11,7 +11,7 @@ Activities:  Walk/Run
 Input:  Exercise type
         Distance (miles)
         Weight (lbs)
-        Time (hours)
+        Time (minutes)
 Output: Calories Burned
 
  Formula Sources:
@@ -44,7 +44,7 @@ var tracker = function(exercise, weight, distance, time) {
 	this.weight = Number(weight);
 	this.distance = Number(distance);
 	this.time = Number(time);
-
+	
 	//catch any error thrown in object creation and re-throw it to
 	//calling module.
     } catch (err){
@@ -83,12 +83,12 @@ tracker.prototype={
 
     //runs the exercise specific calculation on internal variables
     calculate: function() {
-	return this.exercise.calculate(this.weight, this.distance);
+	return this.exercise.calculate(this.weight, this.distance, this.time);
     },
     
     //speed is consistently calculated for all exercise times (distance/time)
     calcSpeed: function(){
-	return this.distance/this.time;
+	return this.distance/(this.time/60);//miles per hour
     }
 
 };

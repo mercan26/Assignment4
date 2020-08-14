@@ -3,17 +3,27 @@
 //to this.exercise at runtime.  Defined at class level
 //Analagous to static methods.
 var walking = function(){
-    this.calculate = function (weight, distance){
+    this.calculate = function (weight, distance, time){
 	return 0.3 * weight * distance;
     }
 };
 //requires weight in lbs, and distance in miles
 var running  = function(){
-    this.calculate = function (weight, distance){
+    this.calculate = function (weight, distance, time){
 	return 0.63 * weight * distance;
     }
 };
 
+var swimming = function(){
+    this.calculate = function (weight, distance, time){
+	//(6 * Weight in KG * 3.5) / 200; is calories PER MINUTE
+
+	kg= weight/2.2;
+//	console.log("kg " + kg);
+//	console.log((6 * kg *3.5)/200 * time);
+	return (((6 * kg *3.5)/200) * time);
+    }
+};
 var Exercise = function(type){
     if (type == "walking"){
 	this.type = type;
@@ -21,15 +31,18 @@ var Exercise = function(type){
     } else if (type == "running"){
 	this.type = type;
 	this.calculation = new running();
-    } else {
+    } else if (type == "swimming"){
+	this.type=type;
+	this.calculation = new swimming();
+    }else {
 	throw ({message: "Unknown Exercise. Cannot Create"});
     }
 }
 
 Exercise.prototype = {
 
-    calculate: function(weight, distance){
-	return this.calculation.calculate(weight, distance);
+    calculate: function(weight, distance, time){
+	return this.calculation.calculate(weight, distance, time);
 
     }
 	
