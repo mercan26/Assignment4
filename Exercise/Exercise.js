@@ -25,13 +25,13 @@ var swimming = function(){
     }
 };
 var Exercise = function(type){
-    if (type == "walking"){
+    if (type.toLowerCase() === "walking"){
 	this.type = type;
 	this.calculation = new walking();
-    } else if (type == "running"){
+    } else if (type.toLowerCase() === "running"){
 	this.type = type;
 	this.calculation = new running();
-    } else if (type == "swimming"){
+    } else if (type.toLowerCase() === "swimming"){
 	this.type=type;
 	this.calculation = new swimming();
     }else {

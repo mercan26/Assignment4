@@ -1,31 +1,56 @@
 var tracker = require("tracker");
-//Note the units
-//Weight is in pounds
-//distance is in miles
-//time is in minutes (note that tracker wants hours so you have a minor conversion to do)
-/*
-var activities = [ {activity: "walking", weight: 150, distance: 3, time: 45}, { activity: "running", weight: 200 , distance: 4, time: 40}, {activity: "running", weight: 175, distance: 5, time: 45}, {activity: "running", weight: 140, distance: 10, time: 240}, {activity: "walking", weight: 165, distance: 2, time: 20}, {activity: "walking", weight: 250, distance: 4, time: 75}, {activity: "running", weight: 215, distance: 3, time: 28}, {activity: "walking", weight: 220, distance: 5, time: 60}, {activity: "swimming", weight: 160, distance: 5, time: 30}];
+var events = require("events");
+var readline = require("readline");
+
+//This is a quick example of how to create a line reader (like getLine from
+//java or fgets from C )
+
+//In NodeJS a convenient  module that provides commandline input capabilities
+//is the "readline" module.  Readers are usually created from this interface
+//implementation from the readline interface.
+//We could also create a reader by processing the stdin stream directly
+//running code on 'data' events and 'end' events but this is a quick and
+//convenient way to interact on the commandline
+
+//And frankly it handles prompting much better with the question function
+const reader = readline.createInterface({
+    input: process.stdin,//use std in as this reader's input/readable stream
+    output: process.stdout // std out as the reader's output/writable stream
+});
+
+//the interesting thing about the readline is that it does the reading for you
+// you just attach the streams and tell the readline how to serve requests and
+//handle events.  But this is just a convenient mask for the readable and
+//writable streams we learned about.  It's not always the most appropriate way
+//to handle data.
+
+//the readLine module provides a lot of useful functions.  One of them is
+//'Question' which prompts the user with a provided string and runs the
+//provided callback once the user enters their answer.
+
+reader.question('What actvity did you perform? \
+(Walking/Running/Swimming)', answer => {
+    
+    reader.question('For how long? (in minutes)', time =>{
+	
+	reader.question('How far? (in miles)', distance => {
+
+	    reader.question('What is your weight today? (in pounds)', weight =>
+			    {
+				//Notice that current scope is still able to
+				//data provided in previous callbacks.
+				var current = new tracker(answer,weight, distance, time);
+				//demos JS Strig interpolation using
+				//"Template Strings"
+				console.log(`Calories Burned: ${current.calculate()}`);
+			    })
+	})
+    })
+})
 
 
-for ( var act  in activities ) {
 
-    try{
-	time = activities[act].time;
-	exercise = activities[act].activity;
-	weight = activities[act].weight;
-	distance = activities[act].distance;
-	var current= new tracker(exercise, weight, distance, time);
-	num=Number(act)+1;
-	console.log("Activity: " + num);
-	console.log(exercise);
-	console.log("Weight: " + weight +" lbs");
-	console.log("Speed: " + current.calcSpeed() + "miles per hour");
-	caloriesBurned = current.calculate();
-	console.log("Calories Burned: "+ caloriesBurned );
-    } catch (err){
-	console.log(err.message);
-    }
-    console.log("***************************");
+var processing= function(){
+    
+    console.log("Processing...");
 }
-*/
-
