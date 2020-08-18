@@ -1,5 +1,7 @@
 var events = require("events");
 var Exercise = require("Exercise");
+//var emitter = new events.EventEmitter();
+
 /*trackerService.js
 
 Improved Tracker Functionality.
@@ -51,6 +53,7 @@ var tracker = function(exercise, weight, distance, time) {
     this.setExercise = function(exercise){
 	this.exercise=new Exercise(exercise);
 	this.emit('exerciseChanged');
+//	emitter.emit("exerciseChanged");
     };
 
     this.setWeight =function(weight){
@@ -59,13 +62,13 @@ var tracker = function(exercise, weight, distance, time) {
     };
     this.setTime = function(time){
 	this.time=time;
-	this.emit('timeChanged');
+	this.emit('timeChanged', time);
     };
     this.setDistance = function(distance){
 	this.distance=distance;
-	this.emit('distanceChanged');
-    };
-   
+	this.emit('distanceChanged', distance);
+    };  
 };
-tracker.prototype.__proto__=events.EventsEmmiter;
+tracker.prototype.__proto__=events.EventEmitter.prototype;
+
 module.exports = tracker;
