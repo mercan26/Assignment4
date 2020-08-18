@@ -1,6 +1,5 @@
 var events = require("events");
 var Exercise = require("Exercise");
-//var emitter = new events.EventEmitter();
 
 /*trackerService.js
 
@@ -25,7 +24,7 @@ Output: Calories Burned
 //requires weight in lbs
 //Time in minutes
 //distance in miles
-//Constructor for the tracker Class.  
+//This is yet another way to define the tracker Class.  
 var tracker = function(exercise, weight, distance, time) {
     try{
 
@@ -53,7 +52,7 @@ var tracker = function(exercise, weight, distance, time) {
     this.setExercise = function(exercise){
 	this.exercise=new Exercise(exercise);
 	this.emit('exerciseChanged');
-//	emitter.emit("exerciseChanged");
+
     };
 
     this.setWeight =function(weight){
@@ -69,6 +68,15 @@ var tracker = function(exercise, weight, distance, time) {
 	this.emit('distanceChanged', distance);
     };  
 };
+
+//this is an old way of "inheriting" from event emitter
+//we're basically adding a pointer that points to the
+//parent class prototype.  This is a rather old and esoteric
+//way of doing things but you WILL see it out in the "wild"
+//There's even yet one more way to inherit using the 'util'
+//module and util.inherits method.  We won't cover that because
+//it was transitional (ES6 Classes are recommended now and prototyping is
+//what was used in the majority of old libraries you'll see)
 tracker.prototype.__proto__=events.EventEmitter.prototype;
 
 module.exports = tracker;
