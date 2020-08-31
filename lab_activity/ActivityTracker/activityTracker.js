@@ -36,6 +36,9 @@ const reader = readline.createInterface({
 //Chaining callbacks is one of the ways that programmers can ensure that code
 // will run in a specific order
 
+//However as you can see there are drawbacks to chaining callbacks (readability,
+//indentation, catching events at the right time  etc) that can be frustrating.
+//Later in the semester we will discuss Promises which will help us with all of this
 
 var response = function(){
     reader.question('What actvity did you perform? \
@@ -77,7 +80,7 @@ var response = function(){
 					//change the current activity
 					//Your job: add some code that will allow a user to change any member of the
 					//tracker.  Add some cases too.  You'll need to add listeners that are listening
-					//for the custom tracker events.
+					//for the custom tracker events (provided for you).
 					reader.question('What is your new activity (Swimming/Walking/Running)', rep=>{
 					    current.setExercise(rep);  //setExercise emits the event 'exerciseChanged'
 					    process.exit(0);           // see the Exercise module for more info
