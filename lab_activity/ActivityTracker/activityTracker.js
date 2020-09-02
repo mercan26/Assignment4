@@ -8,6 +8,7 @@ var readline = require("readline");
 //In NodeJS a convenient  module that provides commandline input capabilities
 //is the "readline" module.  Readers are often created from this interface
 //implementation from the readline interface.
+
 //We could also create a reader by processing the stdin stream directly
 //running code on 'data', 'line', and 'end' events but this is a quick and
 //convenient way to work with basic streams. Note that I could create a
@@ -21,17 +22,11 @@ const reader = readline.createInterface({
 
 //the interesting thing about the readline is that it does the reading for you
 // you just attach the streams and tell the readline how to serve requests and
-//handle events.  But this is just a convenient mask for the readable and
-//writable streams we learned about.  It's not always the most appropriate way
-//to handle data.
+//handle events. 
 
 //the readLine module provides a lot of useful functions.  One of them is
-//'Question' which prompts the user with a provided string and runs the
+//'question' which prompts the user with a provided string and runs the
 //provided callback once the user enters their answer.
-
-
-//In Node, to ensure that things occur in a specified order, we have
-//to use "callbacks" aka functions that we pass, that will be run WHEN we need
 
 //Chaining callbacks is one of the ways that programmers can ensure that code
 // will run in a specific order
@@ -47,21 +42,17 @@ var response = function(){
     reader.question('For how long? (in minutes)', time =>{
 	
 	reader.question('How far? (in miles)', distance => {
-
+	    
 	    reader.question('What is your weight today? (in pounds)', weight =>
 			    {
 				//Notice that current scope is still able to
 				//capture data provided in previous callbacks.
 				var current = new tracker(act,weight, distance, time);
-				//demos JS String interpolation using
-				//"Template Strings"
-				//Template Strings are special Strings that allow you
-				//to create a "template" that can interpolate the data
-		
+				
 				console.log(`Calories Burned: ${current.calculate()}`);
-
-				//notice how
-				 current.on('exerciseChanged', () => {
+				
+				//"every time you catch the exerciseChanged event, run this function
+				current.on('exerciseChanged', () => {
 				    console.log("Exercise Changed!");
 				    console.log(`Calories Burned: ${current.calculate()}`);
 				});
@@ -75,7 +66,7 @@ var response = function(){
 					//Note that I call the function inside the function,
 					//similar to recursion
 					break;
-				    
+					
 				    case "c":
 					//change the current activity
 					//Your job: add some code that will allow a user to change any member of the
@@ -89,7 +80,7 @@ var response = function(){
 				    default:
 					console.log("Bye!");
 					process.exit(0);
-				
+					
 				    }
 				})
 			    })
