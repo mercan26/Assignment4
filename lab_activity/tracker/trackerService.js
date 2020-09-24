@@ -35,7 +35,7 @@ var tracker = function(exercise, weight, distance, time) {
 	this.time = Number(time);
 	events.EventEmitter.call(this);
     } catch (err){
-	console.err("Error recieved during service creation");
+	console.log("Error recieved during service creation");
 	throw err;
     }
 
