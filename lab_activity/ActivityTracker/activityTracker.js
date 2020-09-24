@@ -46,7 +46,8 @@ var response = function(){
 			    {
 				//Notice that current scope is still able to
 				//capture data provided in previous callbacks.
-				var current = new tracker(act,weight, distance, time);
+				console.log(act);
+				var current = new tracker(act.trim(),weight, distance, time);
 				
 				console.log(`Calories Burned: ${current.calculate()}`);
 				
