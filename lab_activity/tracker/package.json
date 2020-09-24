@@ -5,7 +5,7 @@
     "description": "our 3rd Activity.  Changes:  A syntactical has been made in  defining the tracker object, in order make it easier to work with the Events Prototype.This Activity incorporates events, emitters, and event listeners.  There is also some IO. ",
     "main": "trackerService",
     "dependencies": {
-        "Exercise": "file:../Exercise"
+        "Exercise": "file:../Exercise/Exercise-0.1.2.tgz"
     },
     "engines": {
         "node": "*"

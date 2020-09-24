@@ -36,8 +36,7 @@ const reader = readline.createInterface({
 //Later in the semester we will discuss Promises which will help us with all of this
 
 var response = function(){
-    reader.question('What actvity did you perform? \
-(Walking/Running/Swimming)', act => {
+    reader.question('What actvity did you perform? (Walking/Running/Swimming)', act => {
     
     reader.question('For how long? (in minutes)', time =>{
 	
